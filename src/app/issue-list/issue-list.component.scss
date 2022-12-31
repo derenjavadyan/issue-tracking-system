@@ -1,0 +1,14 @@
+.table {
+  display: table;
+  width: 100%;
+}
+
+.row {
+  display: table-row;
+}
+
+.cell {
+  display: table-cell;
+  font-size: 1rem;
+  padding-bottom: 1rem;
+}

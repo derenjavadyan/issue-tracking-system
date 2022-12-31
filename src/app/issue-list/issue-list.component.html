@@ -1,0 +1,28 @@
+<ng-container *ngIf="showReportIssue === false">
+  <button (click)="showReportIssue = true">Add new issue</button>
+  <div class="flex">
+    <div *ngIf="issues && issues.length" class="table">
+      <div class="table__header row">
+        <div class="table__cell cell">Issue No</div>
+        <div class="table__cell cell">Type</div>
+        <div class="table__cell cell">Title</div>
+        <div class="table__cell cell">Description</div>
+        <div class="table__cell cell">Priority</div>
+      </div>
+      <div *ngFor="let issue of issues" class="table__body row">
+        <div class="table__cell cell">{{ issue.issueNo }}</div>
+        <div class="table__cell cell">{{ issue.type }}</div>
+        <div class="table__cell cell">{{ issue.title }}</div>
+        <div class="table__cell cell">{{ issue.description }}</div>
+        <div class="table__cell cell">{{ issue.priority }}</div>
+      </div>
+      <div class="footer">
+        {{ issues.length }}
+      </div>
+    </div>
+  </div>
+</ng-container>
+<app-issue-report
+  *ngIf="showReportIssue === true"
+  (formClose)="onCloseReport()"
+></app-issue-report>

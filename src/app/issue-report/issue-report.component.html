@@ -1,0 +1,33 @@
+<h3>Report an issue</h3>
+<form *ngIf="issueForm" [formGroup]="issueForm" (ngSubmit)="addIssue()">
+  <div class="title">
+    <label>Title</label>
+    <input type="input" formControlName="title" />
+    <div *ngIf="title?.invalid && title?.touched">Title Required</div>
+  </div>
+  <div class="description">
+    <label>Description</label>
+    <textarea cols="30" rows="10" formControlName="description"></textarea>
+  </div>
+  <div class="priority">
+    <input type="radio" value="low" formControlName="priority" />
+    <label>Low</label>
+    <div *ngIf="priority?.invalid && priority?.touched">Priority Required</div>
+  </div>
+  <div class="priority">
+    <input type="radio" value="high" formControlName="priority" />
+    <label>High</label>
+    <div *ngIf="priority?.invalid && priority?.touched">Priority Required</div>
+  </div>
+  <div class="type">
+    <label>Type</label>
+    <select formControlName="type">
+      <option value="Feature">Feature</option>
+      <option value="Bug">Bug</option>
+      <option value="Documentation">Documentation</option>
+    </select>
+    <div *ngIf="type?.invalid && type?.touched">Type Required</div>
+  </div>
+  <button type="submit">Create</button>
+  <button type="button" (click)="formClose.emit()">Cancel</button>
+</form>
