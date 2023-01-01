@@ -15,6 +15,7 @@
         <div class="table__cell cell">{{ issue.title }}</div>
         <div class="table__cell cell">{{ issue.description }}</div>
         <div class="table__cell cell">{{ issue.priority }}</div>
+        <button (click)="selectedIssue = issue">Resolve</button>
       </div>
       <div class="footer">
         {{ issues.length }}
@@ -22,7 +23,14 @@
     </div>
   </div>
 </ng-container>
+
 <app-issue-report
   *ngIf="showReportIssue === true"
   (formClose)="onCloseReport()"
 ></app-issue-report>
+
+<app-confirm-dialog
+  *ngIf="selectedIssue"
+  [issueNo]="selectedIssue.issueNo"
+  (confirm)="onConfirm($event)"
+></app-confirm-dialog>

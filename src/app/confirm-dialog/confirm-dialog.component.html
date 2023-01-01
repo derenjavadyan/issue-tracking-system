@@ -1,0 +1,10 @@
+<div class="modal" *ngIf="issueNo !== null">
+  <div class="modal-content">
+    <h3>Resolve Issue #{{ issueNo }}</h3>
+    <div>
+      <p>Are you sure you want to close the issue?</p>
+    </div>
+    <button (click)="disagree()" type="button">Canel</button>
+    <button (click)="agree()" type="button">Yes, continue</button>
+  </div>
+</div>
