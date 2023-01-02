@@ -31,3 +31,11 @@
   <button type="submit">Create</button>
   <button type="button" (click)="formClose.emit()">Cancel</button>
 </form>
+
+<div *ngIf="suggestions.length">
+  <h3>Similar Issues</h3>
+  <div *ngFor="let issue of suggestions">
+    <h4>#{{ issue.issueNo }}:{{ issue.title }}</h4>
+    <p>{{ issue.description }}</p>
+  </div>
+</div>
