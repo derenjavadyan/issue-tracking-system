@@ -71,4 +71,9 @@ export class IssuesService {
     }
     return [];
   }
+
+  editIssue(issue: Issue) {
+    const index = this.issues.findIndex((i) => i.issueNo === issue.issueNo);
+    this.issues[index] = issue;
+  }
 }
