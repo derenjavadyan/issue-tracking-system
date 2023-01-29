@@ -1,4 +1,4 @@
-<ng-container *ngIf="showReportIssue === false">
+<ng-container *ngIf="!showReportIssue">
   <button (click)="showReportIssue = true">Add new issue</button>
   <div class="flex">
     <div *ngIf="issues && issues.length" class="table">
@@ -16,17 +16,17 @@
         <div class="table__cell cell">{{ issue.description }}</div>
         <div class="table__cell cell">{{ issue.priority }}</div>
         <button (click)="selectedIssue = issue">Resolve</button>
-      </div>
-      <div class="footer">
-        {{ issues.length }}
+        <button (click)="editIssue(issue)">Edit</button>
       </div>
     </div>
   </div>
+  <div class="footer">Number of issues: {{ issues.length }}</div>
 </ng-container>
 
 <app-issue-report
-  *ngIf="showReportIssue === true"
+  *ngIf="showReportIssue"
   (formClose)="onCloseReport()"
+  [editIssue]="editableIssue"
 ></app-issue-report>
 
 <app-confirm-dialog

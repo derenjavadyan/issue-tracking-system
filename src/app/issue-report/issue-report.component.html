@@ -1,5 +1,9 @@
 <h3>Report an issue</h3>
-<form *ngIf="issueForm" [formGroup]="issueForm" (ngSubmit)="addIssue()">
+<form
+  *ngIf="issueForm && !editIssue"
+  [formGroup]="issueForm"
+  (ngSubmit)="addIssue()"
+>
   <div class="title">
     <label>Title</label>
     <input type="input" formControlName="title" />
@@ -39,3 +43,44 @@
     <p>{{ issue.description }}</p>
   </div>
 </div>
+
+<!-- Edit -->
+<form *ngIf="editIssue" [formGroup]="editForm" (ngSubmit)="onEdit()">
+  <div class="title">
+    <label>Title</label>
+    <input type="input" formControlName="title" />
+    <div *ngIf="editTitle?.invalid && editTitle?.touched">Title Required</div>
+  </div>
+  <div class="description">
+    <label>Description</label>
+    <input type="input" formControlName="description" />
+    <div *ngIf="editDescription?.invalid && editDescription?.touched">
+      Description Required
+    </div>
+  </div>
+  <div class="priority">
+    <input type="radio" value="low" formControlName="priority" />
+    <label>Low</label>
+    <div *ngIf="editPriority?.invalid && editPriority?.touched">
+      Priority Required
+    </div>
+  </div>
+  <div class="priority">
+    <input type="radio" value="high" formControlName="priority" />
+    <label>High</label>
+    <div *ngIf="editPriority?.invalid && editPriority?.touched">
+      Priority Required
+    </div>
+  </div>
+  <div class="type">
+    <label>Type</label>
+    <select formControlName="type">
+      <option value="Feature">Feature</option>
+      <option value="Bug">Bug</option>
+      <option value="Documentation">Documentation</option>
+    </select>
+    <div *ngIf="editType?.invalid && editType?.touched">Type Required</div>
+  </div>
+  <button type="submit">Save</button>
+  <button type="button" (click)="formClose.emit()">Cancel</button>
+</form>

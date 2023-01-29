@@ -8,6 +8,7 @@ import { IssuesService } from '../service/issues.service';
   styleUrls: ['./issue-list.component.scss'],
 })
 export class IssueListComponent implements OnInit {
+  editableIssue?: Issue;
   showReportIssue = false;
   issues: Issue[] = [];
   selectedIssue: Issue | null = null;
@@ -31,5 +32,10 @@ export class IssueListComponent implements OnInit {
 
   private getIssues() {
     this.issues = this.issueService.getPendingIssues();
+  }
+
+  editIssue(issue: Issue) {
+    this.showReportIssue = true;
+    this.editableIssue = issue;
   }
 }
